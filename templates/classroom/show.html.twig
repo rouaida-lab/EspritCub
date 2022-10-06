@@ -1,0 +1,17 @@
+<table>
+
+<tr>
+  <td> Name</td>
+  <td> Delete </td>
+<td> Detail </td>
+
+</tr>
+
+{% for classe in classes %}
+<tr>
+    <td>{{classe.name}}</td>
+<td> <a href="{{path('removeClassroomRoute', {'id':classe.id})}}"/>remove</td>
+    <td> <a href="{{path('detailClassroomRoute', {'id':classe.id})}}"/>detail</td>
+</tr>
+{% endfor %}
+</table>

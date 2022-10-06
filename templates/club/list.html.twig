@@ -1,0 +1,36 @@
+{% if formations|length != 0  %}
+<h3>Les titres des formations</h3><br>
+    {% for formation in formations %}
+        <p>{{formation.Titre |upper}}</p><br>
+    {% endfor %}
+<br>
+<h3>Le nombre de formations est:</h3>
+{{formations |length}}
+<h3>Les formations theoriques sont:</h3> <br>
+{% for formation in formations %}
+{% if formation.Description =="formation theorique" %}
+<p>{{formation.Titre |upper}}</p><br>
+{% endif %}
+{% endfor %}
+{% set max=0 %}
+{% set formationG = '' %}
+{% set nb_total = 0 %}
+{% for formation in formations %}
+{% set nb_total = nb_total + formation.nb_participants %}
+{% if formation.nb_participants == 0 %}
+<button><a href="{{path('getname',{'nom':'Rouaida'})}}"> participer </a></button>
+{% endif %}
+{% if formation.nb_participants > max %}
+{% set max = formation.nb_participants %}
+{% set formationG = formation.Titre %}
+{% endif %}
+{% endfor %}
+<h3>La formation ayant le plus grand nombre de participants est:</h3>
+<p>{{formationG |upper}}: {{max}} participants</p><br>
+<h3>Le nombre total des participants dans toutes les formations:</h3>
+<p>{{nb_total}}</p>
+{% endif %}
+{# condition dans le cas ou le tableau formations est vide #}
+{% if formations  is empty %}
+<h6>Le tableau est vide</h6>
+{% endif %}

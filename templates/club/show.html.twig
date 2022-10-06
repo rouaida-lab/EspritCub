@@ -1,0 +1,18 @@
+
+<table>
+
+<tr>
+  <td> createdAt</td>
+  <td> Delete </td>
+<td> Detail </td>
+
+</tr>
+
+{% for club in clubs %}
+<tr>
+    <td>{{club.createdAt|date}}<br></td>
+<td> <a href="{{path('removeClubRoute', {'ref':club.ref})}}"/>remove</td>
+    <td> <a href="{{path('detailClubRoute', {'ref':club.ref})}}"/>detail</td>
+</tr>
+{% endfor %}
+</table>
